@@ -9,7 +9,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class UserController {
 
-    @RequestMapping(value = "loginn")
+    @RequestMapping(value = "/login")
     public String login(RedirectAttributes flash, Principal principal,
 	    @RequestParam(value = "error", required = false) String error,
 	    @RequestParam(value = "logout", required = false) String logout) {
