@@ -19,7 +19,7 @@
 	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 	crossorigin="anonymous"></script>
 
-<title>ADMIN</title>
+<title>USER</title>
 
 <meta charset="utf-8">
 <title>Log in with your account</title>
@@ -27,7 +27,12 @@
 
 
 <body>
-	<div class="container py-4">ADMINNNNNNNN</div>
+<div sec:authorize="isAuthenticated()">
+        <form class="float-right" th:action="@{/logout}" method="post">
+            <input th:type="submit" class="btn btn-secondary" onclick="return confirm('Are you sure logout??');" th:value="#{logout}"/>
+        </form>
+        </div>
+	<div class="container py-4">USERRRRRRRRRRRRRRRRRR</div>
 
 	<footer> </footer>
 

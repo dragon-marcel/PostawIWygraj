@@ -16,7 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -40,10 +39,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	          .frameOptions().sameOrigin()
 	          .and()
 	            .authorizeRequests()
-	             .antMatchers("/resources/**","/h2-console/**", "/webjars/**","/assets/**","/login/**").permitAll()
+	             .antMatchers("/resources/**","/h2-console/**", "/webjars/**","/assets/**").permitAll()
 	                .antMatchers("/").permitAll()
-	                .antMatchers("/admin/**").hasRole("ADMIN")
-	                .antMatchers("/user/**").hasRole("USER")
+	                .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
+	                .antMatchers("/user/**").hasAnyAuthority("USER")
 	                .anyRequest().authenticated()
 	                .and()
 	            .formLogin()
@@ -53,18 +52,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	                .permitAll()
 	                .and()
 	            .logout()
-	             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-	             .logoutSuccessUrl("/login?logout")
-	             .deleteCookies("my-remember-me-cookie")
-	                .permitAll()
-	                .and()
-	             .rememberMe()
-	              .rememberMeCookieName("my-remember-me-cookie")
-	              .tokenRepository(persistentTokenRepository())
-	              .tokenValiditySeconds(24 * 60 * 60)
 	              .and()
-	            .exceptionHandling()
-	              ;
+	            .exceptionHandling().accessDeniedPage("/error_403");
+	              
     }
     PersistentTokenRepository persistentTokenRepository(){
 	     JdbcTokenRepositoryImpl tokenRepositoryImpl = new JdbcTokenRepositoryImpl();

@@ -27,7 +27,7 @@ public class UserController {
 	    return "redirect:/login";
 	}
 
-	return "login/login";
+	return "login";
     }
 
 }
