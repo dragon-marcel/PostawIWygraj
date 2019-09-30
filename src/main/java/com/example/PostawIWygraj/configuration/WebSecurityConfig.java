@@ -1,4 +1,4 @@
-package configuration;
+package com.example.PostawIWygraj.configuration;
 
 import javax.sql.DataSource;
 
