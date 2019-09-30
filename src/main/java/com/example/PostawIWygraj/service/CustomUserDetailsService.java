@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.PostawIWygraj.Repository.UserRepository;
 import com.example.PostawIWygraj.model.User;
+import com.example.PostawIWygraj.repository.UserRepository;
 
 @Service
 @Transactional

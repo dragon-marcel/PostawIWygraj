@@ -1,4 +1,4 @@
-package com.example.PostawIWygraj.Repository;
+package com.example.PostawIWygraj.repository;
 
 import java.util.Optional;
 
