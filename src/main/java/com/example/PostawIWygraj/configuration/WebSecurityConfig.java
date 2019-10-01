@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	          .frameOptions().sameOrigin()
 	          .and()
 	            .authorizeRequests()
-	             .antMatchers("/resources/**","/h2-console/**", "/webjars/**","/assets/**").permitAll()
+	             .antMatchers("/resources/**","/img/**","/h2-console/**", "/webjars/**","/assets/**").permitAll()
 	                .antMatchers("/").permitAll()
 	                .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
 	                .antMatchers("/user/**").hasAnyAuthority("USER")
@@ -51,7 +51,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	                .failureUrl("/login?error")
 	                .permitAll()
 	                .and()
-	            .logout()
+	            .logout().deleteCookies("JSESSIONID")
+	            .and()
+	            .rememberMe().key("uniqueAndSecret")
 	              .and()
 	            .exceptionHandling().accessDeniedPage("/error_403");
 	              

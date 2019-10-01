@@ -7,3 +7,10 @@ INSERT INTO ROLES (ID,NAME) VALUES (2,'USER');
 INSERT INTO USER_ROLE (USER_ID,ROLE_ID) VALUES (1,1);
 INSERT INTO USER_ROLE (USER_ID,ROLE_ID) VALUES (1,2);
 INSERT INTO USER_ROLE (USER_ID,ROLE_ID) VALUES (2,2);
+
+create table if not exists persistent_logins ( 
+  username varchar_ignorecase(100) not null, 
+  series varchar(64) primary key, 
+  token varchar(64) not null, 
+  last_used timestamp not null
+);
