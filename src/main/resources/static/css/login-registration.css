@@ -9,7 +9,7 @@
 }
 
 .bg-image {
-  background-image: url('../img/Euro-2020.png');
+  background-image: url('../img/UEFA.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -53,7 +53,9 @@
   border-radius: .25rem;
   transition: all .1s ease-in-out;
 }
-
+.custom-control-input{
+  background-color: grey;
+}
 .form-label-group input::-webkit-input-placeholder {
   color: transparent;
 }
