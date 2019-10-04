@@ -1,6 +1,7 @@
 package com.example.PostawIWygraj.model;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,12 +16,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "USERS")
-public class User {
+public class User{
+  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -26,9 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 	
         User user = userRepository.findByUsername(userName)
        .orElseThrow(() -> new UsernameNotFoundException("User name " + userName + " not found"));
-        if (user.isBlocked()) {
-            throw new UsernameNotFoundException("User is blocked");
-        }
+
          return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
          getAuthorities(user));
         
