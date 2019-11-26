@@ -100,28 +100,41 @@
 			<li class="nav-item active"><a class="nav-link"
 				href="index.html"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 			</a></li>
+			
+						<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>Zamówienia</span>
+			</a>
+				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+						<a
+						class="dropdown-item" th:href="@{/my-orders}">Moje Zamówienia</a>
+					<a class="dropdown-item" th:href="@{/orders}">Wszystkie Zamówienia</a> 
+				</div></li>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>Pages</span>
+				aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>Kartoteka</span>
 			</a>
 				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
 					<h6 class="dropdown-header">Login Screens:</h6>
 					<a class="dropdown-item" th:href="@{/users}">Użytkownicy</a> <a
-						class="dropdown-item" href="register.html">Grupy</a> <a
-						class="dropdown-item" href="forgot-password.html">Forgot
-						Password</a>
-					<div class="dropdown-divider"></div>
-					<h6 class="dropdown-header">Other Pages:</h6>
-					<a class="dropdown-item" href="404.html">404 Page</a> <a
-						class="dropdown-item" href="blank.html">Blank Page</a>
+						class="dropdown-item" th:href="@{/customers}">Klienci</a>
+						<a
+						class="dropdown-item" th:href="@{/providers}">Dostawcy</a>
+						<a
+						class="dropdown-item" th:href="@{/assortments}">Asortyment</a>
 				</div></li>
-			<li class="nav-item"><a class="nav-link" href="charts.html">
-					<i class="fas fa-fw fa-chart-area"></i> <span>Charts</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" th:href="@{/tables}">
-					<i class="fas fa-fw fa-table"></i> <span>Tabela</span>
-			</a></li>
+				      <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Wykresy</span></a>
+      </li>
+            <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Page</span></a>
+      </li>
 		</ul>
 
 		<div id="content-wrapper">
