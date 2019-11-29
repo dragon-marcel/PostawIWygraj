@@ -1,0 +1,79 @@
+﻿+TDokumentyHandlowePanel
++TPlanWysylekPanel
++TChooseDate
++TRealizujZlecenieWydaniaDialog
++TAddEditSamochod
++PanelWyboruDatyIGodziny
++TAddEditZlecenieProdukcyjneRedWood
++TAddDetailPosZamDialog
++TAddEditDaneZalRozDialog - JSpinner JSpinnerJSpinnerJSpinnerJSpinner
++TAddEditDaneZwrotDialog
++TAddEditDokumentMagazynowy
++TAddEditDokumentProdukcyjny
++TAddEditDokumentProdukcyjnyMFBR
++TAddEditDyspozycjaWydaniaDialog
++TAddEditInwentaryzacjaDialog
++TAddEditKomunikatSystemowyDialog
++TAddEditPosZamowieniaDialog
++TAddEditStawka
++TAddEditSwiadectwoJakosci
++TAddEditZamowienie
++TAddEditZlecenieProdukcyjne
++TAddEditZlecenieProdukcyjneRedWoodAuto
++TAddEditZlecenieSerwisoweDialog
++TAddEditZlecenieWydaniaDialog
++TDanePolisyPlanWysylkiPanel
++TDateEditDialog
++TDokumentyZCzytnikaDialog
++TEditPozycjaPlanuWysylki
++TExportDialog
++TKryteriaRaportuWysylekDialog
++TNextPanel
++TPProdPanel
++TZamowieniaPanel
++TSzczegoloweKosztyTransportu
++TSzczegolyBadanAsortymentuDialog
++TZleceniaSerwisowePanel 
++TDokumentyMagazynowePanel
++TAddEditArtykulDialog - poprawka 40znaków
++TZleceniaTransportowePanel
++TPanelWyboruZakresuDat
++THistoriaAktualizacjiPlanuWysPanel
++TDyspozycjaWydaniaPanel
++TBlackHolePanel
++TScrollPaneDaneDodatkoweTowar
++TScrollPaneDaneDodatkoweOpakowanie
++TAddEditWspolczynnnikFali
++TChooseRangeDate
++TDandeSwiadectwaJakosciDialog
++TFiltrDateDialog
++TRoboczyRaportPowlekaniaDialog
++TRaportZmianowyDialog
++TRaportZHistoriiPrzychodowIRozchodowConfigDialog
++TRaportKontrolingowyDialog
++TPrintTekturowniaDialog
++TPrintSpecyfikacjaInvico
++TPrintSpecyfikacja
++TPrintPrzekrawaczDialog
++TPProdChooseRangeDate
++TOznaczanieDokumentowDoPrzeliczeniaDialog
++TWydajnoscByWydzialDialog
++TWydajnoscDialog
++TZmianaDatyZleceniaDialog- SPINER SPINER SPINER PSINER
++TZmianaCzasuZleceniaDialog -SPINER SPINER SPINER PSINER
++ZleceniaSerwisowe
++ZleceniaSerwisowe.hbm.
++TZleceniaSerwisowePanel
++TDrukHarmonogramuUtrzmanieRuchu
++TSerwisanciJComboBoxModel
++TStatusyZlecenSerwisowychComboBoxModel
++TZleceniaSerwisoweMaszynyComboBoxModel
++harmonogram template
++harmonogram php
+
+
+dodaneeeeee 31.10.2019(+TADDEDITASORTYMENT
+	+TZestawienieZlecenProdukcjiZRaportami
+	+TZestawienieZlecenProdukcjiZRaportamiXLSX
+	+tHelper
+	+TZleceniaWydaniaPanel)

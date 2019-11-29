@@ -3,7 +3,6 @@ package com.example.PostawIWygraj.model;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,9 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -25,7 +25,8 @@ import lombok.Data;
 @Entity
 @Table(name = "USERS")
 public class User implements UserDetails{
-  
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -45,6 +46,9 @@ public class User implements UserDetails{
     private boolean blocked;
     @Column(name = "PAID")
     private BigDecimal paid;
+    @Column(name = "PHOTO")
+    private String photo;
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "USER_ROLE", joinColumns = {
 	    @JoinColumn(name = "USER_ID", referencedColumnName = "ID") }, inverseJoinColumns = {

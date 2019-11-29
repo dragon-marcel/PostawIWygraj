@@ -17,8 +17,8 @@ public class ProviderController {
     @GetMapping(value = "/providers")
     public String getAllProviders(Model model) {
 
-	List<Provider> provider = providerService.findAll();
-	model.addAttribute("providers", provider);
+	List<Provider> providers = providerService.findAll();
+	model.addAttribute("providers", providers);
 	return "providers";
     }
 }
