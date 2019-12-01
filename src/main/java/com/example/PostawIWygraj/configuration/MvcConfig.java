@@ -11,8 +11,9 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 
     public void addResourcesHandlers(ResourceHandlerRegistry registry) {
 	addResourceHandlers(registry);
-	String resourcePath = Paths.get("uploads").toAbsolutePath().toUri().toString();
-	registry.addResourceHandler("/uploads/**")
+	String resourcePath = Paths.get("src/main/resources/static/avatar").toAbsolutePath().toUri().toString();
+	
+	registry.addResourceHandler("src/main/resources/static/avatar/**")
 	.addResourceLocations(resourcePath);
 	
 	
