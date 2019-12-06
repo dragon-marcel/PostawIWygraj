@@ -42,18 +42,9 @@
 					class="mr-2 d-none d-lg-inline text-gray-600 small"
 					sec:authentication="name"></span> 
 					<img
-					th:if="${#authentication.principal.user.photo == null 
-					or #authentication.principal.user.photo == ''}"
 					class="img-profile rounded-circle"
 					style="width: 60px; height: 60px;"
 					th:src="@{/avatar/default_profile.png}">
-					 <img
-					th:if="${#authentication.principal.user.photo != null 
-					and #authentication.principal.user.photo != ''}"
-					class="img-profile rounded-circle"
-					style="width: 60px; height: 60px;"
-					th:src="${#authentication.principal.user.photo}"
-					>
 
 			</a> <!-- Dropdown - User Information -->
 				<div
@@ -137,7 +128,10 @@
 		<!-- SIDEBAR END -->
 
 		<!-- CONTENT START -->
+		    <div class="container-fluid">
+		
 		<section layout:fragment="content"></section>
+		</div>
 		<!-- CONTENT START -->
 
 		<!-- FOOTER START -->
@@ -256,18 +250,9 @@
 							</div>
 							<div class="col-4 col-sm-6">
 								<div class="form-label-group">
-									<img th:src="@{/uploads/photo.jpg}" class="img-thumbnail"
-										alt="Cinque Terre" width="304" height="236">
-								</div>
-								<div class="form-label-group">
-									<div class="custom-file">
-										<input type="file" class="custom-file-input"
-											id="validatedCustomFile" required name="file" multiple accept="image/*"> <label
-											class="custom-file-label" for="validatedCustomFile">Wybierz
-											plik...</label>
-										<div class="invalid-feedback">Example invalid custom
-											file feedback</div>
-									</div>
+									<img th:src="@{/avatar/default_profile.png}"
+									class="img-thumbnail"
+									alt="Cinque Terre" width="304" height="236">
 								</div>
 							</div>
 						</div>

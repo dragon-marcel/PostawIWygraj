@@ -46,8 +46,6 @@ public class User implements UserDetails{
     private boolean blocked;
     @Column(name = "PAID")
     private BigDecimal paid;
-    @Column(name = "PHOTO")
-    private String photo;
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "USER_ROLE", joinColumns = {

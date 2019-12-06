@@ -71,7 +71,7 @@ public class UserController {
 	}
 
 	@PostMapping("/users")
-	public String saveOrUpdateUser(@ModelAttribute("userForm") User user, @RequestParam("file") MultipartFile file,
+	public String saveOrUpdateUser(@ModelAttribute("userForm") User user,
 			BindingResult bindingResult, RedirectAttributes flash) {
 //	userValidator.validate(user, bindingResult);
 //	if (bindingResult.hasErrors()) {
@@ -79,11 +79,7 @@ public class UserController {
 //	    userService.save(user);
 //	     return "users";
 //	}
-		if (!file.isEmpty()) {
-			String nameFile = fileService.save(file);
-			user.setPhoto("/avatar/" + nameFile);
-
-		}
+		
 		flash.addFlashAttribute("success", "Uzytkownik zostął pomyślnie dodany.");
 		userService.save(user);
 		return "redirect:/users";
@@ -91,8 +87,6 @@ public class UserController {
 
 	@RequestMapping(value = "/users")
 	public String findAllUsers(Model model) {
-		UserPrincipal usersPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication()
-				.getPrincipal();
 		List<User> users = userService.findAll();
 		User user = new User();
 		model.addAttribute("userForm", user);

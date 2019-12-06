@@ -15,7 +15,6 @@
 
 <body>
     <div layout:fragment="content">
-    <div class="container-fluid">
   <div class="row">
         <div id="content-wrapper">
             <div class="container-fluid">
@@ -52,7 +51,6 @@
                                         <th>Zapłacone</th>
                                         <th>Zablokowany</th>
                                         <th>Edytuj</th>
-                                        <th>Photo</th>
                                     </tr>
                                 </thead>
                                 <tr th:each="user,lp:${users}">
@@ -64,15 +62,15 @@
                                     <td th:text="${user.email}"></td>
                                     <td th:text="${user.paid}"></td>
                                     <td th:text="${user.blocked}"></td>
-                                    <td th:text="${user.photo}"></td>
                                     <td style="width: 20px"><a th:href="@{/user/} + ${user.id}"><i class="fas fa-user-edit"></i></a></td>
                                 </tr>
                             </table>
                         </div>
                     </div>
-                    <div class="card-footer small text-muted text-center" ><p sec:authentication="principal.user.email"><p th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"></p></div>
+                    <div class="card-footer small text-muted text-center" ><p th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"></p></div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </body>
