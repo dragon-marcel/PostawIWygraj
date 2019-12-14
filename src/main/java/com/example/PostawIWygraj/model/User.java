@@ -1,6 +1,5 @@
 package com.example.PostawIWygraj.model;
 
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -14,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -44,8 +46,7 @@ public class User implements UserDetails{
     private String surname;
     @Column(name = "BLOCKED")
     private boolean blocked;
-    @Column(name = "PAID")
-    private BigDecimal paid;
+    private String workplace;
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "USER_ROLE", joinColumns = {

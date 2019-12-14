@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8">
+</head>
+
+<div th:fragment="modal">
+	
+		<div class="modal fade" id="addCustomerModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<form>
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Dodaj nowego
+							Klienta</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-8 col-sm-6">
+
+								<div class="form-label-group">
+									<input type="text" id="name" class="form-control"
+										placeholder="Nazwa"> <label for="nameCustomer">Nazwa</label>
+									<small id="usernameerror" class="text-form text-danger"></small>
+								</div>
+								<br>
+								<div class="form-label-group">
+									<input type="text" id="email" class="form-control"
+										placeholder="Email adres"> <label
+										for="email">Email adres</label> <small
+										class="text-form text-danger" id="emailerror"></small>
+								</div>
+								<br>
+								<div class="form-label-group">
+									<input type="text" id="nrTel" class="form-control"
+										placeholder="Numer telefonu"> <label for="name">Numer telefonu</label>
+									<small id="nameerror" class="text-form text-danger"></small>
+								</div>
+								<br>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="close" class="btn btn-secondary"
+							data-dismiss="modal">Zamknij</button>
+						<button type="submit" id="addSubmit" class="btn btn-success">Dodaj</button>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+	
+	
+		<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<form class="form-signin">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Edytuj
+							użytkowniaka</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-8 col-sm-6">
+								<div class="form-label-group">
+									<input type="hidden" id="edituserid" name="edituserid"
+										class="form-control">
+									
+								</div>
+								<div class="form-label-group">
+									<input type="text" id="editusername" 
+										class="form-control" placeholder="Login">
+									<label for="editusername">Login</label> <small  id="editusernameerror"
+										class="text-form text-danger"></small>
+								</div>
+								<br>
+								<div class="form-label-group">
+									<input type="text" id="editemail" name="email"
+									 class="form-control"
+										placeholder="Email adres"
+										> <label for="editemail">Email adres</label> <small id="editemailerror"
+										class="text-form text-danger"></small>
+								</div>
+								<br>
+								<div class="form-label-group">
+									<input type="text" id="editname"
+										class="form-control" placeholder="Imię"
+										> <label
+										for="editname">Imię</label> <small id="editnameerror"
+										class="text-form text-danger"></small>
+								</div>
+								<br>
+								<div class="form-label-group">
+									<input type="text" id="editsurname"
+										class="form-control" placeholder="Nazwisko"
+										> <label
+										for="editsurname">Nazwisko</label> <small id="editsurnameerror"
+										class="text-form text-danger"></small>
+								</div>
+								<br>
+								<div class="form-label-group">
+									<input type="text" id="editworkplace" 
+										class="form-control" placeholder="Stanowsiko pracy"
+										> <label
+										for="editworkplace">Stanowsiko pracy</label> <small id="editworkplaceerror"
+										class="text-form text-danger"
+										></small>
+								</div>
+								<br>
+								<div class="form-group">
+									<div class="form-check">
+										<input class="form-check-input" 
+											type="checkbox"id="editBlockdCheck">
+										<label class="form-check-label" for="editBlockdCheck">Zablokowany
+										</label>
+									</div>
+								</div>
+
+							</div>
+							<div class="col-4 col-sm-6">
+								<div class="form-label-group">
+									<img th:src="@{/avatar/default_profile.png}"
+										class="img-thumbnail" alt="Cinque Terre" width="304"
+										height="236">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="close" class="btn btn-secondary"
+							data-dismiss="modal">Zamknij</button>
+						<button type="submit" id= "editUserSubmit" class="btn btn-success">Edytuj</button>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+	
+	
+	
+	
+</div>
+</html>

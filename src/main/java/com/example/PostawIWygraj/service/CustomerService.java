@@ -6,9 +6,13 @@ import com.example.PostawIWygraj.model.Customer;
 public interface CustomerService {
     List<Customer> findAll();
 
-    void save(Customer cusromer);
+    void save(Customer customer);
 
-    void editCustomer(Customer cusromer);
+    void editCustomer(Customer customer);
 
     Customer findById(Long id);
+
+    void delete(Customer customer);
+
+    Customer findByName(String name);
 }

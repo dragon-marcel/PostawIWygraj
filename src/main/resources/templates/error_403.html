@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="~{fragments/main_layout.html}">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Strona zabroniona</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div id="content-wrapper">
+            <div class="container-fluid">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Strona główna</a></li>
+                    <li class="breadcrumb-item active">Brak uprawnień</li>
+                </ol>
+                <div class="card mb-3">
+                    <h1 class="display-1 text-danger">ERROR 404</h1>
+                    <p class="lead">Nie masz uprawniń do tej storny.
+                        <a th:href="@{/index}">Powróć do strony głównej</a>.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

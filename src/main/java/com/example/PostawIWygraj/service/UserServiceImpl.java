@@ -70,7 +70,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void editUser(User user) {
+    public void editUser(User editeUser) {
+	
+	User user = findById(editeUser.getId());
+	user.setName(editeUser.getName());
+	user.setUsername(editeUser.getUsername());
+	user.setSurname(editeUser.getSurname());
+	user.setEmail(editeUser.getEmail());
+	user.setWorkplace(editeUser.getWorkplace());
+
+	user.setBlocked(editeUser.isBlocked());
+
 	userRepository.save(user);
 	
     }
