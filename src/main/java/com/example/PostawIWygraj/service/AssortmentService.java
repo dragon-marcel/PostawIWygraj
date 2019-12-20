@@ -11,4 +11,8 @@ public interface AssortmentService {
     void editAssortment(Assortment assortment);
 
     Assortment findById(Long id);
+
+    Assortment findByName(String name);
+
+    void delete(Assortment assortment);
 }

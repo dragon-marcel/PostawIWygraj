@@ -16,6 +16,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
+
     @PersistenceContext
     private EntityManager em;
 
@@ -50,7 +51,20 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer findByName(String name) {
-	 return (Customer) em.createQuery("from Customer where name ='" + name + "'").getSingleResult();
+
+	List<Customer> customers = em.createQuery("from Customer where name = UPPER('" + name + "')").getResultList();
+	if (customers.size() > 0) {
+	    return customers.stream().findFirst().get();
+	} else {
+	    return null;
+	}
+
+    }
+
+    @Override
+    public List<Customer> search(String term) {
+	List<Customer> customers = em.createQuery("from Customer where UPPER(name) like UPPER('%" + term + "%')").getResultList();
+	return customers;
     }
 
 }

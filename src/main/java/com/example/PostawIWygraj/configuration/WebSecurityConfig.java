@@ -13,6 +13,8 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.firewall.DefaultHttpFirewall;
+import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 import com.example.PostawIWygraj.service.CustomUserDetailsService;
@@ -40,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	          .frameOptions().sameOrigin()
 	          .and()
 	            .authorizeRequests()
-	             .antMatchers("/resources/**","/img/**","/css/**","/h2-console/**", "/webjars/**","/assets/**","/registration/**").permitAll()
+	             .antMatchers("/resources/**","/img/**","/css/**","/h2-console/**", "/api/**","/webjars/**","/assets/**","/registration/**").permitAll()
 //	                .antMatchers("/users/**").hasAnyAuthority("ADMIN")
 //	                .antMatchers("/useraa/**").hasAnyAuthority("USER")
 	                .anyRequest().authenticated().and().
@@ -73,6 +75,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public SessionRegistry sessionRegistry() {
         return new SessionRegistryImpl();
+    }
+    @Bean
+    public HttpFirewall defaultHttpFirewall() {
+        return new DefaultHttpFirewall();
     }
 
 //    @Bean

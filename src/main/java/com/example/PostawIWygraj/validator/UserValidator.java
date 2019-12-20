@@ -1,6 +1,5 @@
 package com.example.PostawIWygraj.validator;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -17,6 +16,7 @@ public class UserValidator implements Validator {
     private UserService userService;
     @Autowired
     private Helper helper;
+
     @Override
     public boolean supports(Class<?> clazz) {
 	return User.class.equals(clazz);
@@ -31,19 +31,24 @@ public class UserValidator implements Validator {
 	    errors.rejectValue("username", "pole nie może być puste.");
 	} else {
 	    if (id != null) {
-		String oldUserName = userService.findById(id).getUsername();
-		if (!oldUserName.equals(user.getUsername()) && userService.findByUsername(user.getUsername()) != null) {
+		String oldUserName = userService.findById(id).getUsername().toUpperCase();
+		if (!oldUserName.equals(user.getUsername().toUpperCase())
+			&& userService.findByUsername(user.getUsername()).getName().toUpperCase()
+				.equals(user.getUsername().toUpperCase())
+			&& userService.findByUsername(user.getUsername()) != null) {
 		    errors.rejectValue("username", "Login już istnieje, wybierz inny.");
 		}
 	    } else {
-		if (userService.findByUsername(user.getUsername()) != null) {
+		if (userService.findByUsername(user.getUsername()) != null
+			&& userService.findByUsername(user.getUsername()).getName().toUpperCase()
+				.equals(user.getUsername().toUpperCase())) {
 		    errors.rejectValue("username", "Login już istnieje, wybierz inny.");
 		}
 	    }
 	}
 	if (user.getEmail().toString().isEmpty()) {
 	    errors.rejectValue("email", "pole nie może być puste.");
-	}else if(!helper.isValidEmailAddress(user.getEmail().toString())) {
+	} else if (!helper.isValidEmailAddress(user.getEmail().toString())) {
 	    errors.rejectValue("email", "wprowadz poprawny adres email.");
 	} else if (user.getName().toString().isEmpty()) {
 	    errors.rejectValue("name", "pole nie może być puste.");

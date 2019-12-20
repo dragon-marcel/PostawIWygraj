@@ -1,9 +1,9 @@
 $(document).ready(function() {
-
-    $('#tableCustomer').dataTable({
+	
+    $('#tableAssortment').dataTable({
 
         ajax: {
-            url: "http://localhost:8080/api/customers",
+            url: "http://localhost:8080/api/assortments",
             type: 'GET',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -19,21 +19,13 @@ $(document).ready(function() {
 
             {
                 data: "name",
-                width: "39%"
-            },
-            {
-                data: "email",
-                width: "24%"
-            },
-            {
-                data: "nrTel",
-                width: "24%"
-            },
+                width: "77%"
+            },  
             {
                 data: "id",
                 render: function(data) {
 
-                    return "<a href= '/api/customers/" + data + "' id='editCustomer' type='button' class='btn btn-warning btn-icon-split p-2'><i class='fa fa-edit fa-fw p-0'></i></a>"
+                    return "<a href= '/api/assortments/" + data + "' id='editAssortment' type='button' class='btn btn-warning btn-icon-split p-2 '><i class='fa fa-edit fa-fw p-0'></i></a>"
                 },
                 width: "5%"
             },
@@ -41,7 +33,7 @@ $(document).ready(function() {
                 data: "id",
                 render: function(data) {
 
-                    return "<a href= '/api/customers/" + data + "' id='deleteCustomer' type='button' class='btn btn-danger btn-icon-split p-2'><i class='fa fa-trash fa-fw p-0'></i></a>"
+                    return "<a href= '/api/assortments/" + data + "' id='deleteAssortment' type='button' class='btn btn-danger btn-icon-split pt-2'><i class='fa fa-trash fa-fw p-0'></i></a>"
                 },
                 width: "5%"
             }
@@ -49,7 +41,7 @@ $(document).ready(function() {
     });
 
     function reloadTable() {
-        $('#tableCustomer').DataTable().ajax.reload();
+        $('#tableAssortment').DataTable().ajax.reload();
     }
 
     function info(textInfo, type) {
@@ -65,13 +57,11 @@ $(document).ready(function() {
 
     }
 
-    $("#addCustomerModal form #addSubmit").on('click', function(e) {
+    $("#addAssortmentModal form #addSubmit").on('click', function(e) {
         e.preventDefault();
-        var apiurl = "http://localhost:8080/api/customers";
+        var apiurl = "http://localhost:8080/api/assortments";
         var data = {
-            name: $("#name").val().trim(),
-            email: $("#email").val().trim(),
-            nrTel: $("#nrTel").val().trim(),
+            name: $("#name").val().trim()
         }
         $.ajax({
             url: apiurl,
@@ -81,10 +71,10 @@ $(document).ready(function() {
             data: JSON.stringify(data),
             success: function(response) {
                 reloadTable();
-                var textInfo = "Klient " + response.name + " został poprawnie dodany.";
+                var textInfo = "Asortyment " + response.name + " został poprawnie dodany.";
                 var type = "success";
                 info(textInfo, type);
-                $('#addCustomerModal').modal('hide');
+                $('#addAssortmentModal').modal('hide');
                 document.getElementsByTagName("form")[0].reset();
                 var small = document.getElementsByTagName("small");
                 for (i = 0; i < small.length; i++) {
@@ -105,7 +95,7 @@ $(document).ready(function() {
 
 
 
-    $("#tableCustomer tbody").on('click', '#editCustomer', function(event) {
+    $("#tableAssortment tbody").on('click', '#editAssortment', function(event) {
         event.preventDefault();
         var apihref = $(this).attr('href');
 
@@ -114,13 +104,10 @@ $(document).ready(function() {
             type: 'GET',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function(customer) {
-                $('#editid').val(customer.id);
-                $('#editname').val(customer.name);
-                $('#editemail').val(customer.email);
-                $('#editnrTel').val(customer.nrTel);
-
-                $('#editCustomerModal').modal();
+            success: function(assortment) {
+                $('#editid').val(assortment.id);
+                $('#editname').val(assortment.name);
+                $('#editAssortmentModal').modal();
             },
             error: function(xhr) {
                 var text = JSON.parse(xhr.responseText);
@@ -130,15 +117,12 @@ $(document).ready(function() {
 
     });
 
-    $("#editCustomerModal #editCustomerSubmit").on('click', function(e) {
+    $("#editAssortmentModal #editAssormentSubmit").on('click', function(e) {
         e.preventDefault();
-        var apiurl = "http://localhost:8080/api/customers";
+        var apiurl = "http://localhost:8080/api/assortments";
         var data = {
             id: $("#editid").val().trim(),
             name: $("#editname").val().trim(),
-            email: $("#editemail").val().trim(),
-            nrTel: $("#editnrTel").val().trim(),
-
         }
         $.ajax({
             url: apiurl,
@@ -147,8 +131,8 @@ $(document).ready(function() {
             dataType: "json",
             data: JSON.stringify(data),
             success: function(response) {
-                $('#editCustomerModal').modal('hide');
-                var textInfo = "Klient " + response.username + " został poprawnie edytowany.";
+                $('#editAssortmentModal').modal('hide');
+                var textInfo = "Asortyment " + response.username + " został poprawnie edytowany.";
                 var type = "success";
                 reloadTable();
                 info(textInfo, type);
@@ -179,37 +163,37 @@ $(document).ready(function() {
         }
     });
 
-    $("#tableCustomer tbody").on('click', '#deleteCustomer', function(event) {
+    $("#tableAssortment tbody").on('click', '#deleteAssortment', function(event) {
         event.preventDefault();
         var apihref = $(this).attr('href');
-        $('#confirmDeleteCustomer').modal();
+        $('#confirmDeleteAssortment').modal();
 
-        $('#confirmDeleteCustomer #delate ').on('click', function() {
+        $('#confirmDeleteAssortment #delate ').on('click', function() {
 
             $.ajax({
                 url: apihref,
                 type: 'DELETE',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function(customer) {
-                    var textInfo = "Klient " + customer.name + " został poprawnie usunięty.";
+                success: function(assortment) {
+                    var textInfo = "Asortyment " + assortment.name + " został poprawnie usunięty.";
                     var type = "success";
                     reloadTable();
                     info(textInfo, type);;
                 },
                 error: function(xhr) {
                     var text = JSON.parse(xhr.responseText);
-                    var textInfo = "Klient " + customer.name + " nie został usunięty, ponieważ istnieje w innych operacjach.";
+                    var textInfo = "Asortyment " + assortment.name + " nie został usunięty, ponieważ istnieje w innych operacjach.";
                     var type = "danger";
                     info(textInfo, type);;
                 }
             });
-            $('#confirmDeleteCustomer').modal('hide');
+            $('#confirmDeleteAssortment').modal('hide');
         });
 
-        $('#confirmDeleteCustomer #close ').on('click', function() {
+        $('#confirmDeleteAssortment #close ').on('click', function() {
 
-            $('#confirmDeleteCustomer').modal('hide');
+            $('#confirmDeleteAssortment').modal('hide');
         });
     });
 

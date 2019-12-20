@@ -30,23 +30,28 @@
 							<i class="fa fa-dollar-sign fa-fw"></i> Moje zamówienia
 							<div class="float-right">
 								<button type="button" class="btn btn-success btn-icon-split"
-									data-toggle="modal" data-target="#addUserModal">
+									id="addOrder">
 									<span class="icon text-white-50"> <i
 										class="far fa-plus-square"></i>
 									</span> <span class="text">Dodaj</span>
 								</button>
-								<button type="button" class="btn btn-warning btn-icon-split"
-									data-toggle="modal" data-target="#raportOrderModal">
+								<button type="button" class="btn btn-info btn-icon-split"
+								 id="raportOrderPDF">
 									<span class="icon text-white-50"> <i
 										class="far fa-plus-square"></i>
-									</span> <span class="text">XML</span>
+									</span> <span class="text">PDF</span>
+								</button>
+								<button type="button" class="btn btn-warning btn-icon-split"
+								 id="raportOrderXLS">
+									<span class="icon text-white-50"> <i
+										class="far fa-plus-square"></i>
+									</span> <span class="text">XMS</span>
 								</button>
 							</div>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
+								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
 											<th>Lp</th>
@@ -71,16 +76,16 @@
 										<td th:text="${order.number}"></td>
 										<td th:text="${order.idAssortment}"></td>
 										<td th:text="${order.createDate}"></td>
-										<td th:text="${order.idProvider}"></td>
+										<td th:text="${order.provider.name}"></td>
 										<td th:text="${order.quantityPurchase}"></td>
 										<td th:text="${order.pricePurchase}"></td>
 										<td th:text="${order.valuePurchase}"></td>
-										<td th:text="${order.idCustomer}">1</td>
+										<td th:text="${order.customer.name}">1</td>
 										<td th:text="${order.quantitySell}"></td>
 										<td th:text="${order.priceSell}"></td>
 										<td th:text="${order.valueSell}"></td>
 										<td th:text="${order.profit}"></td>
-										<td th:text="${order.idUser}"></td>
+										<td th:text="${order.user.name}"></td>
 										<td style="width: 20px"><a
 											th:href="@{/order/} + ${order.id}"><i
 												class="fas fa-user-edit"></i></a></td>

@@ -27,27 +27,30 @@ public class CustomerValidator implements Validator {
 	Customer customer = (Customer) target;
 	Long id = customer.getId();
 	if (customer.getName().toString().isEmpty()) {
-	    errors.rejectValue("nameCustomer", "Pole nie może być puste.");
+	    errors.rejectValue("name", "Pole nie może być puste.");
 	} else {
 	    if (id != null) {
-		String oldName = customerService.findById(id).getName();
-		if (oldName != null && !oldName.equals(customer.getName())
-			&& customerService.findByName(customer.getName()) != null) {
-		    errors.rejectValue("nameCustomer", "Nazwa klienta już istnieje, wybierz inny.");
+		String oldName = customerService.findById(id).getName().toUpperCase();
+		if (oldName != null && !oldName.equals(customer.getName().toUpperCase())
+			&& customerService.findByName(customer.getName().toUpperCase()) != null) {
+		    errors.rejectValue("name", "Nazwa klienta już istnieje, wybierz inny.");
 		}
 	    } else {
-		if (customerService.findByName(customer.getName()) != null) {
-		    errors.rejectValue("username", "Login już istnieje, wybierz inny.");
+		if (customerService.findByName(customer.getName().toUpperCase()) != null) {
+		    errors.rejectValue("name", "Login już istnieje, wybierz inny.");
 		}
 	    }
 	}
 
 	if (customer.getEmail().toString().isEmpty()) {
-	    errors.rejectValue("emailCustomer", "Pole nie może być puste.");
+	    errors.rejectValue("email", "Pole nie może być puste.");
 	} else if (!helper.isValidEmailAddress(customer.getEmail().toString())) {
 	    errors.rejectValue("email", "wprowadz poprawny adres email.");
 	}
 
+	if (customer.getNrTel().toString().isEmpty()) {
+	    errors.rejectValue("nrTel", "Pole nie może być puste.");
+	}
     }
 
 }

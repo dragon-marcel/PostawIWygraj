@@ -4,12 +4,14 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 
 <div th:fragment="modal_raport">
-	<form>
+	
 		<div class="modal fade" id="raportOrderModal" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<form>
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -21,26 +23,116 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						    <div class="row">
-        <div class='col-sm-3'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+
+						<div class="row">
+							<div class="col-8 col-sm-6">
+								<small>Od: </small> <input type='date' id="dateFrom"
+									class="form-control" />
+							</div>
+							<div class="col-4 col-sm-6">
+								<small>Do: </small> <input type='date' id="dateTo"
+									class="form-control" />
+							</div>
+							<div class="col-sm-12 text-center">
+								<small class=" text-danger" id="raportError"></small>
+							</div>
+						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Zamknij</button>
-						<button type="submit" class="btn btn-success">Generuj</button>
+						<button type="button" id="closeRaport" class="btn btn-secondary">Zamknij</button>
+						<button type="button" id="generateRaport" class="btn btn-success">Generuj</button>
 					</div>
 				</div>
 			</div>
-		</div>		
-	</form>	
+			</form>
+		</div>
+		
+		<div class="modal fade" id="addOrderModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<form>
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Dodaj nowe
+							zamówienie</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-8 col-sm-6">
+
+								<div class="form-label-group">
+								 <input th:type="text" name="search-massage" id="search-massage" class="form-control"/>
+									<small id="customererror" class="text-form text-danger"></small>
+								</div>
+								<br>
+								<div class="form-label-group">
+									<input type="text" id="email" class="form-control"
+										placeholder="Email adres"> <label
+										for="email">Email adres</label> <small
+										class="text-form text-danger" id="emailerror"></small>
+								</div>
+								<br>
+								<div class="form-label-group">
+									<input type="text" id="name" class="form-control"
+										placeholder="Imię"> <label for="name">Imię</label>
+									<small id="nameerror" class="text-form text-danger"></small>
+								</div>
+								<br>
+								<div class="form-label-group">
+									<input type="text" id="surname" class="form-control"
+										placeholder="Nazwisko"> <label
+										for="surname">Nazwisko</label> <small id="surnameerror"
+										class="text-form text-danger"></small>
+								</div>
+								<br>
+								<div class="form-label-group">
+									<input type="text" id="workplace" class="form-control"
+										placeholder="Stanowisko pracy"> <label
+										for="workplace">Stanowsiko pracy</label> <small
+										id="workplaceerror" class="text-form text-danger"></small>
+								</div>
+								<br>
+								<div class="form-label-group">
+									<input type="password" id="password" class="form-control"
+										placeholder="Password"> <label
+										for="password">Hasło</label> <small id="passworderror"
+										class="text-form text-danger"></small>
+								</div>
+								<br>
+								<div class="form-label-group">
+									<input type="password" id="passwordConfirm"
+										class="form-control" placeholder="Password">
+									<label for="passwordConfirm">Powtórz hasło</label> <small
+										id="passwordConfirmerror" class="text-form text-danger"></small>
+								</div>
+
+							</div>
+							<div class="col-4 col-sm-6">
+								<div class="form-label-group">
+									<img th:src="@{/avatar/default_profile.png}"
+										class="img-thumbnail" alt="Cinque Terre" width="304"
+										height="236">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="close" class="btn btn-secondary"
+							data-dismiss="modal">Zamknij</button>
+						<button type="submit" id="addSubmit" class="btn btn-success">Dodaj</button>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+	
+		
+		
 </div>
 </html>

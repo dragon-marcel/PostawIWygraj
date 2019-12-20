@@ -53,7 +53,7 @@ $(document).ready(function () {
 				data: "id",
 				render: function (data) {
 
-					return "<a href= '/api/users/" + data + "' id='editUser' type='button' class='btn btn-warning btn-icon-split '><i class='fa fa-edit fa-fw'></i></a>"
+					return "<a href= '/api/users/" + data + "' id='editUser' type='button' class='btn btn-warning btn-icon-split p-0'><i class='fa fa-edit fa-fw p-0'></i></a>"
 				},
 				width: "5%"
 			}
@@ -74,7 +74,7 @@ $(document).ready(function () {
 
 	}
 	// addUserModal
-	$("form #addSubmit").on('click', function (e) {
+	$("#addUserModal form #addSubmit").on('click', function (e) {
 		e.preventDefault();
 		var apiurl = "http://localhost:8080/api/users";
 		var data = {
@@ -98,6 +98,10 @@ $(document).ready(function () {
 				info(textInfo);
 				$('#addUserModal').modal('hide');
 				document.getElementsByTagName("form")[0].reset();
+				var small = document.getElementsByTagName("small");
+				for (i = 0; i < small.length; i++) {
+					small[i].innerHTML = "";
+				}
 			},
 			error: function (xhr) {
 				var small = document.getElementsByTagName("small");

@@ -14,30 +14,29 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.PostawIWygraj.model.Customer;
+import com.example.PostawIWygraj.model.Assortment;
 import com.example.PostawIWygraj.model.ErrorApi;
-import com.example.PostawIWygraj.service.CustomerService;
-import com.example.PostawIWygraj.validator.CustomerValidator;
+import com.example.PostawIWygraj.service.AssortmentService;
+import com.example.PostawIWygraj.validator.AssortmentValidator;
 
 @RestController
-@RequestMapping(value = "/api/customers")
-public class CustomerApiController {
-
+@RequestMapping(value = "/api/assortments")
+public class AssortmentApiController {
     @Autowired
-    private CustomerService customerService;
+    private AssortmentService assortmentService;
     @Autowired
-    private CustomerValidator customerValidator;
+    private AssortmentValidator assortmentValidator;
 
     @GetMapping(consumes = "application/json")
-    public ResponseEntity<List<Customer>> getCustomers() {
-	List<Customer> customers = customerService.findAll();
-	return new ResponseEntity<List<Customer>>(customers, HttpStatus.OK);
+    public ResponseEntity<List<Assortment>> getAssortments() {
+	List<Assortment> assortments = assortmentService.findAll();
+	return new ResponseEntity<List<Assortment>>(assortments, HttpStatus.OK);
 
     }
 
     @PostMapping(consumes = "application/json")
-    public ResponseEntity<?> addCustomer(@RequestBody Customer customer, BindingResult bindingResult) {
-	customerValidator.validate(customer, bindingResult);
+    public ResponseEntity<?> addAssortment(@RequestBody Assortment assortment, BindingResult bindingResult) {
+	assortmentValidator.validate(assortment, bindingResult);
 
 	if (bindingResult.hasErrors()) {
 	    String valid = bindingResult.getFieldError().getCode();
@@ -46,14 +45,14 @@ public class CustomerApiController {
 
 	    return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 	} else {
-	    customerService.save(customer);
-	    return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+	    assortmentService.save(assortment);
+	    return new ResponseEntity<Assortment>(assortment, HttpStatus.OK);
 	}
     }
 
     @PutMapping(consumes = "application/json")
-    public ResponseEntity<?> editUser(@RequestBody Customer customer, BindingResult bindingResult) {
-	customerValidator.validate(customer, bindingResult);
+    public ResponseEntity<?> editAssortment(@RequestBody Assortment assortment, BindingResult bindingResult) {
+	assortmentValidator.validate(assortment, bindingResult);
 	if (bindingResult.hasErrors()) {
 
 	    String valid = bindingResult.getFieldError().getCode();
@@ -61,45 +60,38 @@ public class CustomerApiController {
 	    ErrorApi error = new ErrorApi(valid, pole);
 	    return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 	} else {
-	    customerService.save(customer);
-	    return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+	    assortmentService.save(assortment);
+	    return new ResponseEntity<Assortment>(assortment, HttpStatus.OK);
 	}
     }
 
     @GetMapping(value = "/{id}", consumes = "application/json")
-    public ResponseEntity<?> getCustomer(@PathVariable Long id) {
+    public ResponseEntity<?> getAssortment(@PathVariable Long id) {
 
-	Customer customer = customerService.findById(id);
-	if (customer == null) {
-	    ErrorApi error = new ErrorApi("Brak użytkownika o takim numrze id", "error");
+	Assortment assortment = assortmentService.findById(id);
+	if (assortment == null) {
+	    ErrorApi error = new ErrorApi("Brak asortymentu o takim numrze id", "error");
 	    return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+	return new ResponseEntity<Assortment>(assortment, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}", consumes = "application/json")
-    public ResponseEntity<?> deleteCustomer(@PathVariable Long id) {
+    public ResponseEntity<?> deleteAssortment(@PathVariable Long id) {
 
-	Customer customer = customerService.findById(id);
-	if (customer == null) {
+	Assortment assortment = assortmentService.findById(id);
+	if (assortment == null) {
 	    ErrorApi error = new ErrorApi("Brak klienta o takim numerze id", "error");
 	    return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	try {
-	    customerService.delete(customer);
-	    return new ResponseEntity<Customer>(customer, HttpStatus.OK);
-	}catch(Exception ex) {
+	    assortmentService.delete(assortment);
+	    return new ResponseEntity<Assortment>(assortment, HttpStatus.OK);
+	} catch (Exception ex) {
 	    ErrorApi error = new ErrorApi("Klient jest w użyciu", "error");
 	    return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	
-    }
-    
-    @GetMapping(value = "/search/{term}", consumes = "application/json")
-    public ResponseEntity <List<Customer>> searchMCustomer(@PathVariable String term){
-	List<Customer> customers = customerService.search(term);
-        return new ResponseEntity<List<Customer>>(customers, HttpStatus.OK);
-    }
 
+    }
 }

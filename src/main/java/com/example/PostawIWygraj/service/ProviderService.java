@@ -13,4 +13,7 @@ public interface ProviderService {
 
     Provider findById(Long id);
 
+    Provider findByName(String name);
+
+    void delete(Provider provider);
 }
