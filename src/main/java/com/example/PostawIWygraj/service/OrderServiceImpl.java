@@ -4,10 +4,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import com.example.PostawIWygraj.model.Order;
-import com.example.PostawIWygraj.model.UserPrincipal;
 import com.example.PostawIWygraj.repository.OrderRepository;
 
 @Service
@@ -43,7 +41,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> findAllByIdUser(Long id) {
-	return em.createQuery("from Order where id_user ='" + id + "'").getResultList();
+	return em.createQuery("from Order where user_id ='" + id + "'").getResultList();
     }
 
 }

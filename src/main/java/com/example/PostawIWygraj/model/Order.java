@@ -41,7 +41,7 @@ public class Order {
     @Column(name = "VALUE_PURCHASE")
     private BigDecimal valuePurchase;
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "CUSTOMER", referencedColumnName = "ID")
+    @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "ID")
     private Customer customer;
     @Column(name = "PRICE_SELL")
     private BigDecimal priceSell;

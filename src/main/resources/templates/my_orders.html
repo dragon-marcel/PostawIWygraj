@@ -74,9 +74,9 @@
 									<tr th:each="order,lp:${orders}">
 										<td th:text="${lp.count}">1</td>
 										<td th:text="${order.number}"></td>
-										<td th:text="${order.idAssortment}"></td>
-										<td th:text="${order.createDate}"></td>
 										<td th:text="${order.provider.name}"></td>
+										<td th:text="${order.createDate}"></td>
+										<td th:text="${order.customer.name}"></td>
 										<td th:text="${order.quantityPurchase}"></td>
 										<td th:text="${order.pricePurchase}"></td>
 										<td th:text="${order.valuePurchase}"></td>
