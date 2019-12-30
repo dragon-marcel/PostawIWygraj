@@ -41,7 +41,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> findAllByIdUser(Long id) {
-	return em.createQuery("from Order where user_id ='" + id + "'").getResultList();
+	return em.createQuery("from Order where user_id = ?1")
+		.setParameter(1, id)
+		.getResultList();
     }
 
 }
