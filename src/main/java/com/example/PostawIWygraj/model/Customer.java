@@ -17,4 +17,5 @@ public class Customer {
     private String email;
     @Column(name = "NR_TEL")
     private String nrTel;
+    private String Town;
 }

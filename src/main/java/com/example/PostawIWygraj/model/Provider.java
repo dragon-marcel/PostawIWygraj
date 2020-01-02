@@ -1,5 +1,6 @@
 package com.example.PostawIWygraj.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,5 +16,10 @@ public class Provider {
 
     private Long id;
     private String name;
+    private String email;
+    @Column(name = "NR_TEL")
+    private String nrTel;
+    private String Town;
+    
 
 }

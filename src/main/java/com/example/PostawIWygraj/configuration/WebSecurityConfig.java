@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,7 +18,10 @@ import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
+import com.example.PostawIWygraj.filter.JWTAuthenticationFilter;
+import com.example.PostawIWygraj.filter.JWTAuthorizationToken;
 import com.example.PostawIWygraj.service.CustomUserDetailsService;
+import com.example.PostawIWygraj.service.JWTService;
 
 @Configuration
 @EnableWebSecurity
@@ -26,6 +30,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
  
+    @Autowired
+    private JWTService jWTService;
     @Bean
     public PasswordEncoder  passwordEncoder() {
 	return new BCryptPasswordEncoder();
@@ -42,21 +48,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	          .frameOptions().sameOrigin()
 	          .and()
 	            .authorizeRequests()
-	             .antMatchers("/resources/**","/img/**","/css/**","/h2-console/**", "/api/**","/webjars/**","/assets/**","/registration/**").permitAll()
+	             .antMatchers("/resources/**","/img/**","/css/**","/h2-console/**","/webjars/**","/assets/**","/registration/**").permitAll()
 //	                .antMatchers("/users/**").hasAnyAuthority("ADMIN")
 //	                .antMatchers("/useraa/**").hasAnyAuthority("USER")
 	                .anyRequest().authenticated().and().
-	                cors().and().csrf().disable()                
-	            .formLogin()
-	                .loginPage("/login")
-	                .defaultSuccessUrl("/index") 
-	                .failureUrl("/login?error")
-	                .permitAll()
-	                .and()
-	            .logout().and()
-	            .exceptionHandling().accessDeniedPage("/error_403")
-	            .and()
-	            .sessionManagement().maximumSessions(1).sessionRegistry(sessionRegistry());
+	                addFilter(new JWTAuthenticationFilter(authenticationManager(),jWTService))   
+	                .addFilter(new JWTAuthorizationToken(authenticationManager(),jWTService))  
+	                .csrf().disable().
+		            sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//	            .formLogin()
+//	                .loginPage("/login")
+//	                .defaultSuccessUrl("/index") 
+//	                .failureUrl("/login?error")
+//	                .permitAll()
+//	                .and()
+//	            .logout().and()
+//	            .exceptionHandling().accessDeniedPage("/error_403")
+//	            .and().
+	          
 	              
     }
    

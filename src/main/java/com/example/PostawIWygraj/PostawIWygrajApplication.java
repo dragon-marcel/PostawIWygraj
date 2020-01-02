@@ -1,16 +1,20 @@
 package com.example.PostawIWygraj;
 
+import java.io.IOException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
-import com.example.PostawIWygraj.model.Currency;
+import net.minidev.json.parser.ParseException;
 
 @SpringBootApplication
+@EnableScheduling
 public class PostawIWygrajApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ParseException, java.text.ParseException {
 	SpringApplication.run(PostawIWygrajApplication.class, args);
+	
+	
 
     }
 

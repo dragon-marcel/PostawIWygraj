@@ -18,7 +18,7 @@ public class ChartOrderApiController {
     @Autowired
     private ChartOrderService chartOrderService;
 
-    @GetMapping(consumes = "application/json")
+    @GetMapping
     public ResponseEntity<List<ChartOrder>> getChartOrder() {
 	List<ChartOrder> orders = chartOrderService.getChartOrderLasWeek();
 	return new ResponseEntity<List<ChartOrder>>(orders, HttpStatus.OK);

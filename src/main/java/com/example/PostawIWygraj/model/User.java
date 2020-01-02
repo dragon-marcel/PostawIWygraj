@@ -43,6 +43,7 @@ public class User implements UserDetails{
     private String surname;
     @Column(name = "BLOCKED")
     private boolean blocked;
+    private String telephon;
     private String workplace;
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.MERGE)
