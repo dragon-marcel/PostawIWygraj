@@ -31,4 +31,9 @@ public class Task implements Serializable {
     @Column(name = "STATUS_ID")
     private int idStatus;
     private boolean email;
+    
+    public Task() {
+	this.email = false;
+	this.idStatus = 1;
+    }
 }
